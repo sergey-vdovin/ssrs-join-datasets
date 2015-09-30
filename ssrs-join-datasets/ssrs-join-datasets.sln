@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ssrs-join-datasets", "ssrs-join-datasets.rptproj", "{F94B43CF-179C-4256-97B6-40F9F45C57A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.ActiveCfg = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.Build.0 = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.Deploy.0 = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Default.Build.0 = DebugLocal
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.ActiveCfg = Release
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.Build.0 = Release
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
