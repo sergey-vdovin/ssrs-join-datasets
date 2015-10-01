@@ -400,16 +400,33 @@
     <DataSet Name="SecondaryDataSet">
       <Query>
         <DataSourceName>DataSource1</DataSourceName>
-        <CommandText>
-          select * FROM (
-          VALUES (31, 32, 33), (43,44 , 45), (51, 52,53), (61, 62,63)
-          ) AS A(SecondaryData1, SecondaryData2, SecondaryData3)
-        </CommandText>
+        <CommandText>declare @N as int = 11;
+WITH NRecs
+AS (
+	SELECT 1 AS SecondaryData1
+		,2*@N AS SecondaryData2
+		,4*@N AS SecondaryData3
+	
+	UNION ALL
+	
+	SELECT SecondaryData1 + 1
+		,SecondaryData2 + 1
+		,SecondaryData3 + 1
+	FROM NRecs
+	WHERE SecondaryData1 &lt; @N
+	)
+SELECT SecondaryData1 as MainKey,*
+FROM NRecs
+OPTION (Maxrecursion 32767)</CommandText>
         <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
       </Query>
       <Fields>
         <Field Name="SecondaryDataSQL">
-          <Value>="(null,null,"+CStr(Fields!SecondaryData1.Value)+","+CStr(Fields!SecondaryData2.Value)+","+CStr(Fields!SecondaryData3.Value)+")"</Value>
+          <Value>="("+CStr(Fields!MainKey.Value)+","+CStr(Fields!SecondaryData1.Value)+","+CStr(Fields!SecondaryData2.Value)+","+CStr(Fields!SecondaryData3.Value)+")"</Value>
+        </Field>
+        <Field Name="MainKey">
+          <DataField>MainKey</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="SecondaryData1">
           <DataField>SecondaryData1</DataField>
@@ -433,40 +450,66 @@
             <Value>=Join(Parameters!SecondaryDataSQL.Value,",")</Value>
           </QueryParameter>
         </QueryParameters>
-        <CommandText>
-          WITH source
-          AS (
-          SELECT *
-          FROM (
-          VALUES (1, 'main data 1', 10, 11, 12), (2, ' main data 2', 12, 13, 33)
-          ) AS A(MainKey, MainData, SecondaryData1, SecondaryData2, SecondaryData3)
-          ), create_source_table_nullable
-          AS (
-          SELECT TOP 0 B.*
-          FROM source AS A
-          LEFT JOIN source AS B ON 1 = 0
+        <CommandText>DECLARE @N AS INT = 11;
 
-          UNION ALL
+WITH NRecs
+AS (
+	SELECT 1 AS MainKey
+	
+	UNION ALL
+	
+	SELECT MainKey + 1
+	FROM NRecs
+	WHERE MainKey &lt; @N
+	)
+	,source
+AS (
+	SELECT MainKey
+		,'main data ' + cast(MainKey AS VARCHAR(max)) AS MainData
+		,cast(NULL AS VARCHAR(max)) AS SecondaryData1
+		,cast(NULL AS VARCHAR(max)) AS SecondaryData2
+		,cast(NULL AS VARCHAR(max)) AS SecondaryData3
+	FROM NRecs
+	)
+	,create_source_table_nullable
+AS (
+	SELECT TOP 0 B.*
+	FROM source AS A
+	LEFT JOIN source AS B ON 1 = 0
+	
+	UNION ALL
+	
+	SELECT *
+	FROM source
+	)
+SELECT *
+INTO #results_temporarty_table
+FROM create_source_table_nullable
+OPTION (MAXRECURSION 32767)
 
-          SELECT *
-          FROM source
-          )
-          SELECT *
-          INTO #results_temporarty_table
-          FROM create_source_table_nullable
+IF (@SecondaryDataSQL IS NOT NULL)
+BEGIN
+	DECLARE @sql AS NVARCHAR(max) = '
+	WITH S
+AS (
+	SELECT *
+	FROM (
+		VALUES ' + @SecondaryDataSQL + '
+		) AS A(MainKey, SecondaryData1, SecondaryData2, SecondaryData3)
+	)
+UPDATE #results_temporarty_table
+SET SecondaryData1 = S.SecondaryData1
+	,SecondaryData2 = S.SecondaryData2
+	,SecondaryData3 = S.SecondaryData3
+FROM #results_temporarty_table U
+	,S
+WHERE U.MainKey = S.MainKey '
 
-          IF (@SecondaryDataSQL IS NOT NULL)
-          BEGIN
-          DECLARE @sql AS NVARCHAR(max) = '
-          insert into #results_temporarty_table
-          VALUES ' + @SecondaryDataSQL
+	EXEC (@sql)
+END
 
-          EXEC (@sql)
-          END
-
-          SELECT *
-          FROM #results_temporarty_table
-        </CommandText>
+SELECT *
+FROM #results_temporarty_table</CommandText>
       </Query>
       <Fields>
         <Field Name="MainKey">
@@ -479,15 +522,15 @@
         </Field>
         <Field Name="SecondaryData1">
           <DataField>SecondaryData1</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SecondaryData2">
           <DataField>SecondaryData2</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SecondaryData3">
           <DataField>SecondaryData3</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
