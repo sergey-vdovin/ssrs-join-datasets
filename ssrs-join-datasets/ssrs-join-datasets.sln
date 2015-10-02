@@ -5,21 +5,35 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "ssrs-join-datasets", "ssrs-join-datasets.rptproj", "{F94B43CF-179C-4256-97B6-40F9F45C57A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\WebAndLoadTestProject1\Tests.csproj", "{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C2B1203E-2F93-44E6-A12F-5D94CF6E1246}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Default = Debug|Default
-		DebugLocal|Default = DebugLocal|Default
-		Release|Default = Release|Default
+		Debug|Any CPU = Debug|Any CPU
+		DebugLocal|Any CPU = DebugLocal|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.ActiveCfg = Debug
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.Build.0 = Debug
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Default.Deploy.0 = Debug
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Default.ActiveCfg = DebugLocal
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Default.Build.0 = DebugLocal
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.ActiveCfg = Release
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.Build.0 = Release
-		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Default.Deploy.0 = Release
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Any CPU.ActiveCfg = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Any CPU.Build.0 = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Debug|Any CPU.Deploy.0 = Debug
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.DebugLocal|Any CPU.Deploy.0 = DebugLocal
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Any CPU.ActiveCfg = Release
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Any CPU.Build.0 = Release
+		{F94B43CF-179C-4256-97B6-40F9F45C57A6}.Release|Any CPU.Deploy.0 = Release
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED11DF08-EA96-4941-AFFA-13642CFE1B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

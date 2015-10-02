@@ -8,6 +8,14 @@
       <Name>JoinDatasets.rdl</Name>
       <FullPath>JoinDatasets.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>JoinDatasetsUserName.rdl</Name>
+      <FullPath>JoinDatasetsUserName.rdl</FullPath>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>JoinDatasetsUserNameLookup.rdl</Name>
+      <FullPath>JoinDatasetsUserNameLookup.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
@@ -16,10 +24,11 @@
       <Options>
         <OutputPath>bin\Debug</OutputPath>
         <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+        <TargetServerURL>http://192.168.3.3:81/ReportServer</TargetServerURL>
         <TargetFolder>ssrs-join-datasets</TargetFolder>
-        <TargetDataSourceFolder>Data Sources</TargetDataSourceFolder>
-        <TargetDatasetFolder>Datasets</TargetDatasetFolder>
-        <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+        <TargetDataSourceFolder>ssrs-join-datasets\Data Sources</TargetDataSourceFolder>
+        <TargetDatasetFolder>ssrs-join-datasets\Datasets</TargetDatasetFolder>
+        <TargetReportPartFolder>ssrs-join-datasets\Report Parts</TargetReportPartFolder>
       </Options>
     </Configuration>
     <Configuration>
